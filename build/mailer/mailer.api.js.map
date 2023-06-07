@@ -1,0 +1,1 @@
+{"version":3,"file":"mailer.api.js","sourceRoot":"","sources":["../../src/mailer/mailer.api.ts"],"names":[],"mappings":";;AACA,mDAAoC;AAEpC,IAAM,MAAM,GAAG,UAAC,GAAgB;IAC5B,GAAG,CAAC,GAAG,CAAC,UAAC,GAAkB,EAAE,CAAC,EAAE,IAAkB;QAC9C,GAAG,CAAC,SAAS,GAAG,wBAAI,CAAC;QACrB,IAAI,EAAE,CAAC;IACX,CAAC,CAAC,CAAA;AACN,CAAC,CAAA;AAED,kBAAe,MAAM,CAAC"}

@@ -1,0 +1,11 @@
+{
+  "apps": [
+    {
+      "name": "rcdit-server",
+      "script": "build/server.js",
+      "instances": "max",
+      "exec_mode": "cluster",
+      "listen_timeout": 24000
+    }
+  ]
+}

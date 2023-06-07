@@ -1,0 +1,1 @@
+export const Uid = async () => Math.random().toString(24).slice(2);

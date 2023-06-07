@@ -1,0 +1,1 @@
+{"version":3,"file":"admin.api.js","sourceRoot":"","sources":["../../../src/app/admin/admin.api.ts"],"names":[],"mappings":";;AACA,gDAAqC;AACrC,sDAA2C;AAE3C,IAAM,KAAK,GAAG,UAAC,GAAgB;IAC3B,GAAG,CAAC,GAAG,CAAC,UAAC,GAAkB,EAAE,CAAC,EAAE,IAAkB;QAC9C,GAAG,CAAC,OAAO,GAAG,kBAAE,CAAC;QACjB,IAAI,EAAE,CAAC;IACX,CAAC,CAAC,CAAA;IACF,OAAO,sBAAM,CAAC;AAClB,CAAC,CAAA;AAED,kBAAe,KAAK,CAAC"}
