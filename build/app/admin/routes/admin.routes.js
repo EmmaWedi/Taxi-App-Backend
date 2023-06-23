@@ -7,7 +7,7 @@ var admin_validator_1 = require("../validator/admin.validator");
 var jwt_api_1 = require("../../../jwt/jwt.api");
 var router = express.Router();
 router.post('/add', (0, joi_validate_1.default)(admin_validator_1.default.newAdmin), admin_handler_1.default.addAdmin);
-router.post('/login', (0, joi_validate_1.default)(admin_validator_1.default.login), admin_handler_1.default.signin);
+router.post('/signin', (0, joi_validate_1.default)(admin_validator_1.default.login), admin_handler_1.default.signin);
 router.use((0, jwt_api_1.default)());
 router.get('/details', admin_handler_1.default.getAdminDetails);
 router.put('/update', (0, joi_validate_1.default)(admin_validator_1.default.update), admin_handler_1.default.updateAdmin);

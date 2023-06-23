@@ -57,12 +57,12 @@ const signin = async (req: Request | any, res: Response) => {
         
         if (!verified)  throw Error ('Wrong Credentials');
 
+        const uid: string = await Uid();
+
         const token = await req.generateToken({
-            uid: userExists.uid,
+            uid: uid,
             isBlocked: userExists.isBlocked
         })
-
-        const uid: string = await Uid();
 
         await req.dbCustomers.update({ isActive: true, uid }, { where: { id: userExists.id } });
 
@@ -82,6 +82,7 @@ const signin = async (req: Request | any, res: Response) => {
 const getCustomerDetails = async (req: Request | any, res: Response) => {
     try {
         const auth = req.user;
+
         const details = await req.dbCustomers.findOne({ where: { uid: auth.uid } });
 
         if (details === null) throw Error ('Invalid Account');

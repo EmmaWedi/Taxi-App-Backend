@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Uid = void 0;
 var Uid = function () { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-    return [2 /*return*/, Math.random().toString(36).slice(2)];
+    return [2 /*return*/, Math.random().toString(36).slice(2).toUpperCase()];
 }); }); };
 exports.Uid = Uid;
 //# sourceMappingURL=formatter.module.js.map

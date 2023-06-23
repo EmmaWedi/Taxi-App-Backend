@@ -7,7 +7,7 @@ import auth from '../../../jwt/jwt.api';
 const router = express.Router();
 
 router.post('/signup', validate(validator.newDriver), Handler.addDriver);
-router.post('/login', validate(validator.login), Handler.signin);
+router.post('/signin', validate(validator.login), Handler.signin);
 
 router.use(auth());
 router.get('/details', Handler.getDriverDetails);

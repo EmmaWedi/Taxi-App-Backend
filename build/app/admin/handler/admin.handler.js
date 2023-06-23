@@ -75,7 +75,7 @@ var addAdmin = function (req, res) { return __awaiter(void 0, void 0, void 0, fu
                         fullname: fullname,
                         password: securePassword,
                         phone: phone,
-                        uid: uid.toUpperCase(),
+                        uid: uid,
                         salt: hash
                     })];
             case 5:
@@ -96,7 +96,7 @@ var addAdmin = function (req, res) { return __awaiter(void 0, void 0, void 0, fu
     });
 }); };
 var signin = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, userExists, verified, token, uid, error_2;
+    var _a, email, password, userExists, verified, uid, token, error_2;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
@@ -112,16 +112,16 @@ var signin = function (req, res) { return __awaiter(void 0, void 0, void 0, func
                 verified = _b.sent();
                 if (!verified)
                     throw Error('Wrong Credentials');
+                return [4 /*yield*/, (0, formatter_module_1.Uid)()];
+            case 3:
+                uid = _b.sent();
                 return [4 /*yield*/, req.generateToken({
-                        uid: userExists.uid,
+                        uid: uid,
                         isBlocked: userExists.isBlocked
                     })];
-            case 3:
-                token = _b.sent();
-                return [4 /*yield*/, (0, formatter_module_1.Uid)()];
             case 4:
-                uid = _b.sent();
-                return [4 /*yield*/, req.dbAdmin.update({ isActive: true, uid: uid.toUpperCase() }, { where: { id: userExists.id } })];
+                token = _b.sent();
+                return [4 /*yield*/, req.dbAdmin.update({ isActive: true, uid: uid }, { where: { id: userExists.id } })];
             case 5:
                 _b.sent();
                 return [2 /*return*/, res.json({
@@ -140,13 +140,13 @@ var signin = function (req, res) { return __awaiter(void 0, void 0, void 0, func
     });
 }); };
 var getAdminDetails = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var admin, details, error_3;
+    var auth, details, error_3;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                admin = req.user;
-                return [4 /*yield*/, req.dbAdmin.findOne({ where: { uid: admin.uid } })];
+                auth = req.user;
+                return [4 /*yield*/, req.dbAdmin.findOne({ where: { uid: auth.uid } })];
             case 1:
                 details = _a.sent();
                 if (details === null)
@@ -167,14 +167,14 @@ var getAdminDetails = function (req, res) { return __awaiter(void 0, void 0, voi
     });
 }); };
 var updateAdmin = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var admin, data, result, error_4;
+    var auth, data, result, error_4;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                admin = req.user;
+                auth = req.user;
                 data = req.body;
-                return [4 /*yield*/, req.dbAdmin.update(__assign({}, data), { where: { uid: admin.uid } })];
+                return [4 /*yield*/, req.dbAdmin.update(__assign({}, data), { where: { uid: auth.uid } })];
             case 1:
                 result = _a.sent();
                 if (result === null)
@@ -194,13 +194,13 @@ var updateAdmin = function (req, res) { return __awaiter(void 0, void 0, void 0,
     });
 }); };
 var logout = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var admin, result, error_5;
+    var auth, result, error_5;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                admin = req.user;
-                return [4 /*yield*/, req.dbAdmin.update({ isActive: false }, { where: { uid: admin.uid } })];
+                auth = req.user;
+                return [4 /*yield*/, req.dbAdmin.update({ isActive: false }, { where: { uid: auth.uid } })];
             case 1:
                 result = _a.sent();
                 if (result === null)

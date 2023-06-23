@@ -7,7 +7,7 @@ import auth from '../../../jwt/jwt.api';
 const router = express.Router();
 
 router.post('/add', validate(validator.newAdmin), Handler.addAdmin);
-router.post('/login', validate(validator.login), Handler.signin);
+router.post('/signin', validate(validator.login), Handler.signin);
 
 router.use(auth());
 router.get('/details', Handler.getAdminDetails);

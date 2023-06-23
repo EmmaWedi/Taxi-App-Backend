@@ -64,12 +64,12 @@ const signin = async (req: Request | any, res: Response) => {
 
         if (!verified) throw Error('Wrong Credentials');
 
+        const uid: string = await Uid();
+
         const token = await req.generateToken({
-            uid: userExists.uid,
+            uid: uid,
             isBlocked: userExists.isBlocked
         })
-
-        const uid: string = await Uid();
 
         await req.dbDrivers.update({ isActive: true, uid }, { where: { id: userExists.id } });
 

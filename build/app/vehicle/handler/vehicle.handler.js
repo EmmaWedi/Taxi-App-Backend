@@ -64,7 +64,7 @@ var addVehicle = function (req, res) { return __awaiter(void 0, void 0, void 0, 
                         condition: condition,
                         numOfSeats: numOfSeats,
                         driver: driver['id'],
-                        vid: vid.toUpperCase()
+                        vid: vid
                     })];
             case 3:
                 vehicle = _b.sent();

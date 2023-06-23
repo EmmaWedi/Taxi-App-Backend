@@ -15,6 +15,7 @@ var schema = db_conn_1.default.define('Bookings', {
             key: 'id'
         }
     },
+    tripNumber: sequelize.STRING,
     driver: {
         type: sequelize.UUID,
         references: {
@@ -36,8 +37,32 @@ var schema = db_conn_1.default.define('Bookings', {
     },
     pickupLocation: sequelize.STRING,
     destinationLocation: sequelize.STRING,
+    distance: sequelize.STRING,
+    estimate: sequelize.STRING,
+    estimatedDistance: sequelize.STRING,
+    estimatedTime: sequelize.STRING,
+    destinationLocationCordinates: sequelize.STRING,
+    pickupLocationCordinates: sequelize.STRING,
+    tracking: sequelize.STRING,
+    discountApplied: {
+        type: sequelize.BOOLEAN,
+        defaultValue: false
+    },
+    totalFare: {
+        type: sequelize.INTEGER,
+        defaultValue: 0
+    },
+    charge: {
+        type: sequelize.INTEGER,
+        defaultValue: 0
+    },
+    paymentMode: {
+        type: sequelize.ENUM('cash', 'card'),
+        defaultValue: 'cash'
+    },
+    review: sequelize.INTEGER,
     status: {
-        type: sequelize.ENUM('pending', 'rejected', 'accepted', 'started', 'assigned'),
+        type: sequelize.ENUM('pending', 'rejected', 'cancelled', 'accepted', 'started', 'assigned'),
         defaultValue: 'pending'
     },
     createdAt: {
@@ -53,7 +78,7 @@ var schema = db_conn_1.default.define('Bookings', {
     indexes: [
         {
             unique: true,
-            fields: ['uid', 'customer', 'drvier', 'admin', 'status']
+            fields: ['tripNumber', 'customer', 'drvier', 'admin', 'status', 'createdAt', 'discountApplied', 'review']
         }
     ]
 });

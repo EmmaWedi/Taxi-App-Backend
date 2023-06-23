@@ -81,7 +81,7 @@ var addDriver = function (req, res) { return __awaiter(void 0, void 0, void 0, f
                         fullname: fullname,
                         password: securePassword,
                         phone: phone,
-                        uid: uid.toUpperCase(),
+                        uid: uid,
                         DoB: DoB,
                         salt: hash
                     })];
@@ -103,7 +103,7 @@ var addDriver = function (req, res) { return __awaiter(void 0, void 0, void 0, f
     });
 }); };
 var signin = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, userExists, verified, token, uid, error_2;
+    var _a, email, password, userExists, verified, uid, token, error_2;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
@@ -119,16 +119,16 @@ var signin = function (req, res) { return __awaiter(void 0, void 0, void 0, func
                 verified = _b.sent();
                 if (!verified)
                     throw Error('Wrong Credentials');
+                return [4 /*yield*/, (0, formatter_module_1.Uid)()];
+            case 3:
+                uid = _b.sent();
                 return [4 /*yield*/, req.generateToken({
-                        uid: userExists.uid,
+                        uid: uid,
                         isBlocked: userExists.isBlocked
                     })];
-            case 3:
-                token = _b.sent();
-                return [4 /*yield*/, (0, formatter_module_1.Uid)()];
             case 4:
-                uid = _b.sent();
-                return [4 /*yield*/, req.dbDrivers.update({ isActive: true, uid: uid.toUpperCase() }, { where: { id: userExists.id } })];
+                token = _b.sent();
+                return [4 /*yield*/, req.dbDrivers.update({ isActive: true, uid: uid }, { where: { id: userExists.id } })];
             case 5:
                 _b.sent();
                 return [2 /*return*/, res.json({
@@ -147,13 +147,13 @@ var signin = function (req, res) { return __awaiter(void 0, void 0, void 0, func
     });
 }); };
 var getDriverDetails = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var driver, details, error_3;
+    var auth, details, error_3;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                driver = req.user;
-                return [4 /*yield*/, req.dbDrivers.findOne({ where: { uid: driver.uid } })];
+                auth = req.user;
+                return [4 /*yield*/, req.dbDrivers.findOne({ where: { uid: auth.uid } })];
             case 1:
                 details = _a.sent();
                 if (details === null)
@@ -174,14 +174,14 @@ var getDriverDetails = function (req, res) { return __awaiter(void 0, void 0, vo
     });
 }); };
 var updateDriver = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var driver, data, result, error_4;
+    var auth, data, result, error_4;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                driver = req.user;
+                auth = req.user;
                 data = req.body;
-                return [4 /*yield*/, req.dbDrivers.update(__assign({}, data), { where: { uid: driver.uid } })];
+                return [4 /*yield*/, req.dbDrivers.update(__assign({}, data), { where: { uid: auth.uid } })];
             case 1:
                 result = _a.sent();
                 if (result === null)
@@ -201,13 +201,13 @@ var updateDriver = function (req, res) { return __awaiter(void 0, void 0, void 0
     });
 }); };
 var logout = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var driver, result, error_5;
+    var auth, result, error_5;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                driver = req.user;
-                return [4 /*yield*/, req.dbDrivers.update({ isActive: false }, { where: { uid: driver.uid } })];
+                auth = req.user;
+                return [4 /*yield*/, req.dbDrivers.update({ isActive: false }, { where: { uid: auth.uid } })];
             case 1:
                 result = _a.sent();
                 if (result === null)

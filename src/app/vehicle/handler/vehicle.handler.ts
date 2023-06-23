@@ -15,9 +15,13 @@ const addVehicle = async (req: Request | any, res: Response) => {
             numOfSeats
         } = req.body;
         const auth = req.user;
+
         const driver = await req.dbDrivers.findOne({ where: { uid: auth.uid, isApproved: false } });
+
         if (driver === null) throw Error(`Driver Not Valid`);
+
         const vid = await Uid();
+        
         const vehicle = await req.dbVehicle.create({
             brand,
             model,
