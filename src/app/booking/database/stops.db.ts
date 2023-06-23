@@ -1,7 +1,7 @@
 import * as sequelize from 'sequelize';
 import SQLCONN from '../../../config/databases/mysql/db.conn';
 
-const schema = SQLCONN.define('Rejects', {
+const schema = SQLCONN.define('Stops', {
     id: {
         type: sequelize.UUID,
         primaryKey: true,
