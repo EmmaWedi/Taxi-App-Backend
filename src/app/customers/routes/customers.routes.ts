@@ -11,7 +11,7 @@ router.post('/signup', validate(validator.newCustomer), Handler.signup);
 router.post('/signin', validate(validator.login), Handler.signin);
 
 router.use(auth());
-router.get('/details', Handler.getCustomerDetails);
+router.get('/details', auth(), Handler.getCustomerDetails);
 router.put('/update', validate(validator.update), Handler.updateCustomer);
 router.get('/logout', Handler.logout);
 
