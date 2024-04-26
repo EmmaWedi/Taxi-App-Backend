@@ -1,4 +1,4 @@
-# rcdit_server
+# Taxi App
 
 NodeJs backend for taxi app
 
